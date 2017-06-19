@@ -1,0 +1,215 @@
+.bet-list {
+
+    .stake {
+        text-align: right;
+
+        .stake-feedback {
+            opacity: 0;
+            color: red;
+            padding-right: 20px;
+
+            @media(max-width: 600px) {
+                margin-bottom: 10px;
+                display: block;
+
+                i {
+                    display: none;
+                }
+            }
+        }
+
+        label {
+            position: relative;
+            font-family: $font-fam-secondary;
+            font-size: 1.5rem;
+            color: GetColour(primary, mid);
+            text-transform: uppercase;
+
+            .pound {
+                position: absolute;
+                right: 95px;
+                top: 5px;
+            }
+        }
+
+        input {
+            background: rgba(255,255,255, 0.6);
+            width: 110px;
+            color: GetColour(primary, dark);
+            text-align: right;
+            font-size: 1.5rem;
+            padding: 0px 5px;
+            line-height: 1.5rem;
+            border: 1px solid white;
+        }
+
+        &.invalid {
+
+            .stake-feedback {
+                opacity: 1;
+                animation: animation_fade-in 0.5s linear normal;
+            }
+
+            input {
+                border: 1px solid red;
+            }
+        }
+    }
+
+    .bet {
+        @extend %text-shadow;
+        clear: both;
+        position: relative;
+        margin: 10px 0px;
+        color: rgba(255, 255, 255, 0.8);
+
+        .transaction-id {
+            margin: 10px;
+        }
+
+        .bet-info {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            overflow: auto;
+            white-space: nowrap;
+            position: relative;
+
+            &.top {
+                background: GetColour(primary, dark);
+                border-top-left-radius: 10px;
+                margin-left: 5px;
+                font-family: $font-fam-secondary;
+                padding: 10px 20px 10px 20px;
+
+                @media (min-width: 600px) {
+                    .info:nth-child(2) {
+                        text-align: center;
+                    }
+                }
+            }
+
+            &.bottom {
+                background: GetColour(primary, mid);
+                border-bottom-right-radius: 10px;
+                margin-left: -5px;
+                padding: 10px 10px 10px 20px;
+
+                @media (min-width: 600px) {
+                    .info:last-of-type {
+                        text-align: right;
+                        padding-right: 30px;
+                    }
+                }
+            }
+        }
+
+        .info {
+            display: table-cell;
+            white-space: nowrap;
+
+            &.add_bet {
+                @extend %arrow-go;
+                margin-top: 15px;
+
+                @media (min-width: 600px) {
+                    text-align: right;
+                    float: right;
+                    padding-right: 30px;
+                    margin: 0;
+                }
+            }
+
+            &.odds {
+                text-align: right;
+                float: right;
+                padding-right: 30px;
+            }
+        }
+
+        .control {
+            position: absolute;
+            right: 5px;
+            text-align: center;
+            bottom: 5px;
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                color: GetColour(primary, light);
+            }
+        }
+
+        @media (max-width: 600px) {
+            margin: 15px 0px 65px 0px;
+
+            .bet-info {
+                &.bottom {
+                    text-align: center;
+                }
+
+                .info {
+                    display: block;
+                    margin: 5px 0px;
+
+                    &.odds {
+                        position: absolute;
+                        top: 20px;
+                        right: 0px;
+                    }
+
+                    &.add_bet {
+                        background: #07285e;
+                        position: absolute;
+                        bottom: -55px;
+                        left: 10px;
+                        padding: 15px 5px;
+                        right: -10px;
+                    }
+                }
+            }
+
+            .control {
+                top: 5px;
+                right: -5px;
+            }
+        }
+    }
+}
+
+.bet-slip, .receipt {
+    .bet {
+        margin: 10px 0px;
+    }
+}
+
+.bet-slip {
+    position: relative;
+
+    button {
+        @extend %btn;
+        @extend %arrow-go;
+        font-family: $font-fam-fancy;
+        font-size: 2.5rem;
+        border-top: 2px solid GetColour(primary, mid);
+        border-bottom: 2px solid GetColour(primary, mid);
+        width: 100%;
+        color: GetColour(primary, dark);
+
+        span {
+            padding-right: 15px;
+        }
+
+        i {
+            top: 9px;
+        }
+    }
+}
+
+.alert-success {
+    text-align: center;
+    border-bottom: 2px solid GetColour(primary, mid);
+    color: GetColour(primary, dark);
+    padding-bottom: 10px;
+}

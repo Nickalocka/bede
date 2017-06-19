@@ -1,0 +1,121 @@
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Betting</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Oswald|Monofett" rel="stylesheet">
+    <link rel="stylesheet" href="_styles/css/styles.css">
+</head>
+<body>
+    <main class="main-content-wrapper" id="app-hook">
+
+        <section id="component_bet-list" class="layout-block" style="display: none;"></section>
+
+        <script id="template_BetList" type="x-template/underscore">
+            <div class="layout-block_content">
+                <div class="bet-list">
+                    <div class="stake" id="stake">
+                        <span class="stake-feedback">
+                            <span>Please Enter a Stake <i class="icon-arrow-long-right"></i></span>
+                        </span>
+                        <label>
+                            Enter Stake:
+                            <span class="pound">£</span>
+                            <input type="text" pattern="[0-9]" placeholder="0.00" id="input_stake" />
+                        </label>
+                    </div>
+                    <% _.each(items, function(bet) { %>
+                    <div class="bet" data-bet-id="<%- bet.bet_id %>">
+                        <div class="bet-info top">
+                            <div class="info"><span><%- bet.event %></span></div>
+                            <div class="info"><span><%- bet.name %></span></div>
+                            <div class="info odds" data-odds='f'><span><%- bet.odds.numerator %> / <%- bet.odds.denominator %></span></div>
+                            <div class="info odds" style="display:none;" data-odds='d'><span><%- bet.decimal %></span></div>
+                        </div>
+                        <div class="bet-info bottom">
+                            <div class="info"><span>Potential Payout: </span><span data-bet-payout="">£0.00</span></div>
+                            <div class="info add_bet" id="add_bet">
+                                <span>Add To Bet Slip <i class="icon-arrow-long-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                    <div class="switch-format" data-odds-type="d"></div>
+                </div>
+            </div>
+        </script>
+
+        <section id="component_bet-slip" class="layout-block bet-slip" style="display: none;">
+            <header class="layout-block_header">
+                <h1>Bet Slip</h1>
+            </header>
+            <div class="layout-block_content">
+                <div class="bet-list" id="bet-slip"></div>
+                <div class="bottom-panel">
+                    <button id="btn_submitBetSlip">
+                        <span>Place <span class="no-wrap">Your Bets</span> <i class="icon-arrow-long-right"></i></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script id="template_BetSlip" type="x-template/underscore">
+            <% _.each(items, function(bet) { %>
+            <div class="bet" data-bet-id="<%- bet.bet_id %>">
+                <div class="bet-info top">
+                    <div class="info"><%- bet.event %></div>
+                    <div class="info"><%- bet.name %></div>
+                    <div class="info odds" data-odds='f'><span><%- bet.odds.numerator %> / <%- bet.odds.denominator %></span></div>
+                    <div class="info odds" style="display:none;" data-odds='d'><span><%- bet.decimal %></span></div>
+                </div>
+                <div class="bet-info bottom">
+                    <div class="info"><span>Stake: </span><span><%- bet.stake %></span></div>
+                    <div class="info"><span>Potential Payout: </span><span data-bet-payout=""><%- bet.payout %></span></div>
+                </div>
+                <div class="control" data-slip-delete="<%- bet.bet_id %>">
+                    <i class="icon-cross"></i>
+                </div>
+            </div>
+            <% }) %>
+        </script>
+
+        <section id="component_receipt" class="layout-block" style="display: none;"></section>
+
+        <script id="template_receipt" type="x-template/underscore">
+            <h1 class="alert-success">
+                Your bets have been placed, good luck!
+            </h1>
+            <header class="layout-block_header">
+                <h1>Receipt</h1>
+            </header>
+            <div class="layout-block_content">
+                <div class="receipt">
+                    <div class="bet-list">
+                        <% _.each(items, function(receipt) { %>
+                        <div class="bet" data-bet-id="<%- receipt.bet_id %>">
+                            <div class="transaction-id">
+                               Transaction ID:  <%- receipt.transaction_id %>
+                            </div>
+                            <div class="bet-info top">
+                                <div class="info"><%- receipt.event %></div>
+                                <div class="info"><%- receipt.name %></div>
+                                <div class="info odds" data-odds='f'><span><%- receipt.odds.numerator %> / <%- receipt.odds.denominator %></span></div>
+                                <div class="info odds" style="display:none;" data-odds='d'><span><%- receipt.decimal %></span></div>
+                            </div>
+                            <div class="bet-info bottom">
+                                <div class="info"><span>Stake: </span><span><%- receipt.stake %></span></div>
+                                <div class="info"><span>Potential Payout: </span><span><%- receipt.payout %></span></div>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <div class="switch-format" data-odds-type="d"></div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+    </main>
+    <script src="_scripts/app.js"></script>
+
+</body>
+</html>

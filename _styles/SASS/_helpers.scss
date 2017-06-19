@@ -1,0 +1,117 @@
+
+$font-fam-primary: 'Dosis', sans-serif;
+$font-fam-secondary: 'Oswald', sans-serif;
+$font-fam-fancy: 'Monofett', cursive;
+$font-size-base: 18px;
+
+
+$ColourPalette: ( 
+    mono: ( 
+    lightest: white, 
+    light: #7a7979, 
+    mid: #565353, 
+    dark: #353434, 
+    darkest: black
+    ), 
+    primary: ( 
+    light: rgb(101, 125, 165), 
+    mid: rgb(19, 78, 173), 
+    dark: rgb(7, 40, 94), 
+    ),
+);
+
+@function GetColour($palette, $tone: "mid") {
+    @return map-get(map-get($ColourPalette, $palette), $tone);
+}
+
+%btn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: $font-fam-secondary;
+    padding: 10px 25px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-align: center;
+    background: none;
+
+    &:focus,
+    &:hover,
+    &:active {
+        outline: none;
+    }
+}
+
+@mixin linearGradient($top, $bottom) {
+    background: $top; /* Old browsers */
+    background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $top 0%,$bottom 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $top 0%,$bottom 100%); /* IE10+ */
+    background: linear-gradient(to bottom, $top 0%,$bottom 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+@keyframes animation_fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes animation_arrow-go {
+    0% {
+        right: -30px;
+    }
+
+    25% {
+        right: -25px;
+    }
+
+    50% {
+        right: -30px;
+    }
+
+    75% {
+        right: -35px;
+    }
+
+    100% {
+        right: -30px;
+    }
+}
+
+%arrow-go {
+    cursor: pointer;
+
+    i {
+        position: absolute;
+        right: -30px;
+        top: 4px;
+    }
+
+    span {
+        position: relative;
+    }
+
+    &:hover {
+        i {
+            animation: animation_arrow-go 1s linear infinite;
+        }
+    }
+}
+
+%text-shadow {
+    text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.3), 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+
+.no-wrap {
+    white-space: nowrap;
+}

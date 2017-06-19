@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background:-webkit-radial-gradient(center, circle, rgba(0, 0, 0, 0.89) 40%, rgba(0, 0, 0, 0.9) 10%);
+    background-size: 10px 10px, 10px 10px, 100% 100%;
+    background-position: 1px 1px, 0px 0px, center center;
+    font-family: $font-fam-primary;
+    font-size: $font-size-base;
+    letter-spacing: 2px;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-fam-fancy;
+    padding: 0px;
+    margin: 5px 0px;
+    font-weight: normal;
+    color: GetColour(primary, dark);
+}
+
+h1 {
+    font-size: 3rem;
+    letter-spacing: 7px;
+}
+
+h2 {
+    font-size: 2.8rem;
+    letter-spacing: 6px;
+}
+
+h3 {
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+}
+
+h4 {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+}
+
+h5 {
+    font-size: 2.1rem;
+    letter-spacing: 3px;
+}
+
+h6 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+input {
+    font-family: $font-fam-secondary;
+
+    &:focus {
+        outline: -webkit-focus-ring-color none 0px;
+    }
+}
+
+.main-content-wrapper {
+    margin: 0 auto;
+    max-width: 750px;
+    width: 95%;
+}
+
+.layout-block {
+    margin: 10px auto;
+}
+
+.layout-block_header {
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.switch-format {
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+
+    &:after {
+        display: block;
+    }
+
+    &[data-odds-type="d"] {
+
+        &:after {
+            content: "Switch to decimal formatted odds";
+        }
+    }
+
+    &[data-odds-type="f"] {
+
+        &:after {
+            content: "Switch to fractional formatted odds";
+        }
+    }
+}
